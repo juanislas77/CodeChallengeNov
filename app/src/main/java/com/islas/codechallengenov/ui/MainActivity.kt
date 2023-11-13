@@ -15,12 +15,5 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.mainFragmentContainerView) as NavHostFragment
         navController = navHostFragment.navController
-
-//        val list = IMarvelApiImpl().makeCall()
-//        if(list?.status.equals("OK")){
-//            textView.text = list?.code.toString()
-//        }
-        //makeCall()
-        //println(ClientHttp.BASE_URL+"/v1/public/characters?limit=50&ts="+ClientHttp.timeStamp+"&apikey="+ClientHttp.API_KEY+"&hash="+ClientHttp.hash())
     }
 }

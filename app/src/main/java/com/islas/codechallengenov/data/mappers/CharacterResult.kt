@@ -3,7 +3,7 @@ package com.islas.codechallengenov.data.mappers
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Result(
+data class CharacterResult(
     val comics: Comics,
     val description: String,
     val events: Events,

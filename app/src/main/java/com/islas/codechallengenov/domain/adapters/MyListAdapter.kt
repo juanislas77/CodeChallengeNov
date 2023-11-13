@@ -8,15 +8,15 @@ import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import com.islas.codechallengenov.R
-import com.islas.codechallengenov.data.mappers.Result
+import com.islas.codechallengenov.data.mappers.CharacterResult
 
 import com.squareup.picasso.Picasso
 
 class MyListAdapter(
     private val context: Activity,
-    private val characterList: ArrayList<Result>,
-    private val onClickListener: (detail: Result) -> Unit
-) : ArrayAdapter<Result>(context, R.layout.list_item,characterList){
+    private val characterList: ArrayList<CharacterResult>,
+    private val onClickListener: (detail: CharacterResult) -> Unit
+) : ArrayAdapter<CharacterResult>(context, R.layout.list_item,characterList){
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val inflater: LayoutInflater = LayoutInflater.from(context)

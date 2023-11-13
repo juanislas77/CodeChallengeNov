@@ -57,4 +57,7 @@ dependencies {
 
     //Serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
+
+    //Picasso
+    implementation("com.squareup.picasso:picasso:2.8")
 }

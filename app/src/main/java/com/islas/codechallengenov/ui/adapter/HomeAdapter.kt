@@ -3,29 +3,30 @@ package com.islas.codechallengenov.ui.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.islas.codechallengenov.R
 import com.islas.codechallengenov.databinding.ListItemBinding
 import com.islas.codechallengenov.domain.models.Character
+import com.squareup.picasso.Picasso
 
-class HomeAdapter(private val characterList: List<Character>) :
-    RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
+class HomeAdapter:
+    PagingDataAdapter<Character, HomeAdapter.CharacterViewHolder>(CharacterComparator) {
 
     private lateinit var mBinding: ListItemBinding
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
         mBinding = ListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return HomeViewHolder(mBinding.root)
+        return CharacterViewHolder(mBinding.root)
     }
 
-    override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
-        val data = characterList[position]
-        with(mBinding){
-            characterTitle.text = data.name
-            characterDescription.text = data.description
+    override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
+        val data = getItem(position)
+        with(mBinding) {
+            characterTitle.text = data?.name
+            characterDescription.text = data?.description
+            Picasso.get().load(data?.image).error(R.drawable.marvel_logo).into(characterImage)
         }
     }
 
-    override fun getItemCount(): Int = characterList.size
-
-    inner class HomeViewHolder(view: View) : RecyclerView.ViewHolder(view)
+    inner class CharacterViewHolder(view: View) : RecyclerView.ViewHolder(view) {}
 }

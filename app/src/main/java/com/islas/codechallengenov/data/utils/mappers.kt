@@ -4,7 +4,7 @@ import com.islas.codechallengenov.data.models.CharacterResult
 import com.islas.codechallengenov.domain.models.Character
 
 fun CharacterResult.toDomain() = Character(
-    id = this.id.toString(),
+    id = this.id,
     name = this.name,
     description = this.description,
     image = this.thumbnail.path

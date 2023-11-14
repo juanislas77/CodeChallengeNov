@@ -64,6 +64,9 @@ dependencies {
     //Picasso
     implementation("com.squareup.picasso:picasso:2.8")
 
+    //Pagination
+    implementation("androidx.paging:paging-runtime-ktx:3.2.1")
+
     implementation("androidx.navigation:navigation-compose:2.6.0")
     implementation("androidx.navigation:navigation-fragment-ktx:2.6.0")
     implementation("androidx.navigation:navigation-ui-ktx:2.6.0")

@@ -1,11 +1,11 @@
-package com.islas.codechallengenov.data.mappers
+package com.islas.codechallengenov.data.models
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Series(
+data class Stories(
     val available: Int,
     val collectionURI: String,
-    val items: List<Item>,
+    val items: List<ItemXXX>,
     val returned: Int
 )

@@ -1,4 +1,4 @@
-package com.islas.codechallengenov.data.mappers
+package com.islas.codechallengenov.data.models
 
 import kotlinx.serialization.Serializable
 

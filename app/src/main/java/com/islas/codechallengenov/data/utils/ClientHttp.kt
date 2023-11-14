@@ -1,4 +1,4 @@
-package com.islas.codechallengenov.domain.utils
+package com.islas.codechallengenov.data.utils
 
 import java.math.BigInteger
 import java.security.MessageDigest

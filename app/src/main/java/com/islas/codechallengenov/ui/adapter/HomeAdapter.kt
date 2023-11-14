@@ -1,22 +1,31 @@
 package com.islas.codechallengenov.ui.adapter
 
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.islas.codechallengenov.databinding.ListItemBinding
 import com.islas.codechallengenov.domain.models.Character
 
-class HomeAdapter(list: List<Character>): RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
+class HomeAdapter(private val characterList: List<Character>) :
+    RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
+
+    private lateinit var mBinding: ListItemBinding
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
-        TODO("Not yet implemented")
+        mBinding = ListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return HomeViewHolder(mBinding.root)
     }
 
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        val data = characterList[position]
+        with(mBinding){
+            characterTitle.text = data.name
+            characterDescription.text = data.description
+        }
     }
 
-    override fun getItemCount(): Int {
-        TODO("Not yet implemented")
-    }
+    override fun getItemCount(): Int = characterList.size
 
-    inner class HomeViewHolder(view: View): RecyclerView.ViewHolder(view)
+    inner class HomeViewHolder(view: View) : RecyclerView.ViewHolder(view)
 }

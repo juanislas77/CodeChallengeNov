@@ -5,10 +5,10 @@ import com.islas.codechallengenov.domain.models.Character
 
 object  CharacterComparator : DiffUtil.ItemCallback<Character>() {
     override fun areItemsTheSame(oldItem: Character, newItem: Character): Boolean {
-        return oldItem.id == newItem.id
+        return oldItem.id == newItem.id //&& oldItem.name == newItem.name
     }
 
     override fun areContentsTheSame(oldItem: Character, newItem: Character): Boolean {
-        return oldItem == newItem
+        return oldItem.name == newItem.name
     }
 }

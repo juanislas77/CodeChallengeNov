@@ -4,10 +4,9 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.islas.codechallengenov.data.utils.toDomain
 import com.islas.codechallengenov.domain.models.Character
+import com.islas.codechallengenov.domain.repository.IHomeRepository
 
-class CharacterPagingSource : PagingSource<Int, Character>() {
-
-    private val repository = HomeRepositoryImp()
+class CharacterPagingSource(private val repository: IHomeRepository): PagingSource<Int, Character>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Character> {
         val nextPageNumber = params.key ?: 1
@@ -15,7 +14,7 @@ class CharacterPagingSource : PagingSource<Int, Character>() {
         return LoadResult.Page(
             data = response.results.map { it.toDomain() },
             prevKey = null,
-            nextKey = response.offset + 1
+            nextKey = if (response.results.isEmpty()) null else response.offset + 1
         )
 
     }

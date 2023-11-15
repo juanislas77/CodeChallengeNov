@@ -1,10 +1,9 @@
-package com.islas.codechallengenov.ui
+package com.islas.codechallengenov
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import com.islas.codechallengenov.R
 
 class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController

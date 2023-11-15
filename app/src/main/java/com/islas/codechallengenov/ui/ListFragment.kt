@@ -18,6 +18,7 @@ import com.islas.codechallengenov.ui.adapter.HomeAdapter
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
 
 
 private const val ITEMS_PER_PAGE = 50
@@ -26,9 +27,14 @@ class ListFragment : Fragment() {
 
     private lateinit var mBinding: FragmentListBinding
 
+    private val pagingSource: CharacterPagingSource by inject()
+
     private val items: Flow<PagingData<Character>> = Pager(
-        config = PagingConfig(pageSize = ITEMS_PER_PAGE, enablePlaceholders = false),
-        pagingSourceFactory = { CharacterPagingSource() }
+        config = PagingConfig(
+            pageSize = ITEMS_PER_PAGE,
+            enablePlaceholders = false,
+        ),
+        pagingSourceFactory = { pagingSource }
     ).flow.cachedIn(lifecycleScope)
 
     private val homeAdapter = HomeAdapter()
@@ -44,11 +50,15 @@ class ListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupRecyclerView()
+    }
 
+    private fun setupRecyclerView() {
         lifecycleScope.launch {
-            items.collectLatest {
+            items.collectLatest{
                 homeAdapter.submitData(it)
             }
+
         }
 
         mBinding.recyclerview.apply {

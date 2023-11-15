@@ -20,11 +20,13 @@ class HomeAdapter:
     }
 
     override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
-        val data = getItem(position)
-        with(mBinding) {
-            characterTitle.text = data?.name
-            characterDescription.text = data?.description
-            Picasso.get().load(data?.image).error(R.drawable.marvel_logo).into(characterImage)
+        getItem(position)?.let { data ->
+            holder.setIsRecyclable(false)
+            with(mBinding) {
+                characterTitle.text = data.name
+                characterDescription.text = data.description
+                Picasso.get().load(data.image).error(R.drawable.marvel_logo).into(characterImage)
+            }
         }
     }
 

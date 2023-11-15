@@ -10,7 +10,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import com.islas.codechallengenov.data.CharacterPagingSource
 import com.islas.codechallengenov.databinding.FragmentListBinding
 import com.islas.codechallengenov.domain.models.Character
@@ -63,7 +63,7 @@ class ListFragment : Fragment() {
 
         mBinding.recyclerview.apply {
             adapter = homeAdapter
-            layoutManager = LinearLayoutManager(requireContext())
+            layoutManager = GridLayoutManager(requireContext(), 2)
         }
     }
 }

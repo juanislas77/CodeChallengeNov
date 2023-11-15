@@ -23,9 +23,9 @@ class HomeAdapter:
         getItem(position)?.let { data ->
             holder.setIsRecyclable(false)
             with(mBinding) {
-                characterTitle.text = data.name
-                characterDescription.text = data.description
-                Picasso.get().load(data.image).error(R.drawable.marvel_logo).into(characterImage)
+                tvName.text = data.name
+                tvDescription.text = data.description
+                Picasso.get().load(data.image).error(R.drawable.marvel_logo).into(imgPhoto)
             }
         }
     }

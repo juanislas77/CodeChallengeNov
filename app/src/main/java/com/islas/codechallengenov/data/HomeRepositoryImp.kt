@@ -24,14 +24,9 @@ private val json = Json {
 
 class HomeRepositoryImp : IHomeRepository {
     override suspend fun makeCall(pageNumber: Int): Data {
-        val apiString =
-            ClientHttp.BASE_URL + "/v1/public/characters?offset=" + pageNumber + "&limit=50&ts=" + ClientHttp.timeStamp + "&apikey=" + ClientHttp.API_KEY + "&hash=" + ClientHttp.hash()
-        println(apiString)
-        return fetchData(apiString).data
-    }
-
-    override suspend fun fetchData(apiUrl: String): Mappers {
         return withContext(Dispatchers.IO) {
+            val apiUrl =
+                "${ClientHttp.BASE_URL}/v1/public/characters?offset=$pageNumber&limit=${ClientHttp.LIMIT}&ts=${ClientHttp.timeStamp}&apikey=${ClientHttp.API_KEY}&hash=${ClientHttp.hash()}"
             val client = OkHttpClient()
             val request = Request.Builder().url(apiUrl).build()
 
@@ -41,17 +36,16 @@ class HomeRepositoryImp : IHomeRepository {
                         val body = response.body?.string()
                         val result = body?.let { json.decodeFromString<Mappers>(it) }
                         continuation.resume(
-                            result ?: throw IllegalStateException("Invalid response body")
+                            result?.data ?: throw IllegalStateException("Invalid response body")
                         )
                     }
 
                     override fun onFailure(call: Call, e: IOException) {
-                        println("Fetch failed")
                         continuation.resumeWithException(e)
                     }
                 })
             }
         }
-
     }
+
 }

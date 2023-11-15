@@ -29,8 +29,7 @@ class ListFragment : Fragment() {
     private val items: Flow<PagingData<Character>> = Pager(
         config = PagingConfig(pageSize = ITEMS_PER_PAGE, enablePlaceholders = false),
         pagingSourceFactory = { CharacterPagingSource() }
-    ).flow
-        .cachedIn(lifecycleScope)
+    ).flow.cachedIn(lifecycleScope)
 
     private val homeAdapter = HomeAdapter()
 
